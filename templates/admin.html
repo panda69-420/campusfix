@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Admin Dashboard</h2>
+
+  <div class="stats">
+    {% for s in statuses %}
+      <div class="stat">
+        <strong>{{ counts[s] }}</strong>
+        <span>{{ s }}</span>
+      </div>
+    {% endfor %}
+  </div>
+
+  <form method="GET" class="filters">
+    <select name="status">
+      <option value="">All statuses</option>
+      {% for s in statuses %}
+        <option value="{{ s }}" {% if s == selected_status %}selected{% endif %}>{{ s }}</option>
+      {% endfor %}
+    </select>
+    <select name="category_id">
+      <option value="">All categories</option>
+      {% for c in categories %}
+        <option value="{{ c.id }}" {% if c.id|string == selected_category %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
+  </form>
+
+  {% for issue in issues %}
+    <div class="card">
+      <div class="card-head">
+        <h3>#{{ issue.id }} {{ issue.title }}</h3>
+        <span class="badge {{ issue.status|lower|replace(' ', '-') }}">{{ issue.status }}</span>
+      </div>
+      <p class="meta">
+        {{ issue.category.name }} &middot; {{ issue.location }} &middot;
+        by {{ issue.author.name }} &middot;
+        {{ issue.created_at.strftime('%d %b %Y, %I:%M %p') }}
+      </p>
+      <p>{{ issue.description }}</p>
+      {% if issue.image_path %}
+        <img src="{{ url_for('static', filename='uploads/' + issue.image_path) }}" alt="Issue photo">
+      {% endif %}
+
+      <form method="POST" action="{{ url_for('update_status', issue_id=issue.id) }}" class="status-form">
+        <select name="status">
+          {% for s in statuses %}
+            <option value="{{ s }}" {% if s == issue.status %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  {% else %}
+    <p>No issues match these filters.</p>
+  {% endfor %}
+{% endblock %}

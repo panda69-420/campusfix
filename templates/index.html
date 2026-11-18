@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="hero">
+    <h1>CampusFix</h1>
+    <p>See something broken on campus? Report it, and track it until it's fixed.</p>
+    {% if current_user.is_authenticated %}
+      {% if current_user.role == 'admin' %}
+        <a class="btn" href="{{ url_for('admin_dashboard') }}">Go to Dashboard</a>
+      {% else %}
+        <a class="btn" href="{{ url_for('report_issue') }}">Report an Issue</a>
+        <a class="btn secondary" href="{{ url_for('my_reports') }}">My Reports</a>
+      {% endif %}
+    {% else %}
+      <a class="btn" href="{{ url_for('login') }}">Login</a>
+      <a class="btn secondary" href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+  </div>
+
+  <div class="steps">
+    <div class="step"><strong>1. Report</strong><span>Describe the problem and add a photo.</span></div>
+    <div class="step"><strong>2. Review</strong><span>Staff review and pick it up.</span></div>
+    <div class="step"><strong>3. Resolved</strong><span>Track progress until it's fixed.</span></div>
+  </div>
+{% endblock %}

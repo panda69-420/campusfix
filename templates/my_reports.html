@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>My Reports</h2>
+
+  {% if issues %}
+    {% for issue in issues %}
+      <div class="card">
+        <div class="card-head">
+          <h3>{{ issue.title }}</h3>
+          <span class="badge {{ issue.status|lower|replace(' ', '-') }}">{{ issue.status }}</span>
+        </div>
+        <p class="meta">
+          {{ issue.category.name }} &middot; {{ issue.location }} &middot;
+          {{ issue.created_at.strftime('%d %b %Y, %I:%M %p') }}
+        </p>
+        <p>{{ issue.description }}</p>
+        {% if issue.image_path %}
+          <img src="{{ url_for('static', filename='uploads/' + issue.image_path) }}" alt="Issue photo">
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>You haven't reported anything yet. <a href="{{ url_for('report_issue') }}">Report an issue</a></p>
+  {% endif %}
+{% endblock %}

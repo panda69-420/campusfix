@@ -1,0 +1,48 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; }
+nav { display: flex; justify-content: space-between; align-items: center;
+      background: #1f4e79; padding: 12px 24px; }
+nav a, nav span { color: #fff; margin-left: 16px; text-decoration: none; }
+nav .brand { font-size: 20px; font-weight: bold; margin-left: 0; }
+main { max-width: 800px; margin: 30px auto; padding: 0 16px; }
+form { background: #fff; padding: 20px; border-radius: 8px; }
+label { display: block; margin-top: 12px; font-weight: bold; }
+input, select, textarea { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; }
+button { margin-top: 16px; padding: 10px 18px; background: #1f4e79; color: #fff;
+         border: none; border-radius: 4px; cursor: pointer; }
+.flash { padding: 10px; border-radius: 4px; margin-bottom: 12px; }
+.flash.error { background: #fde2e2; color: #a12; }
+.flash.success { background: #def7e4; color: #176b2c; }
+
+.card { background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 16px; }
+.card-head { display: flex; justify-content: space-between; align-items: center; }
+.card-head h3 { margin: 0; }
+.meta { color: #666; font-size: 14px; }
+.card img { max-width: 100%; max-height: 250px; border-radius: 6px; margin-top: 8px; }
+.badge { padding: 4px 10px; border-radius: 12px; font-size: 13px; color: #fff; }
+.badge.pending { background: #e69500; }
+.badge.in-progress { background: #1f78d1; }
+.badge.resolved { background: #2e9e4f; }
+
+.stats { display: flex; gap: 12px; margin-bottom: 16px; }
+.stat { flex: 1; background: #fff; padding: 12px; border-radius: 8px; text-align: center; }
+.stat strong { display: block; font-size: 24px; }
+.filters { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; }
+.filters button, .status-form button { margin-top: 0; }
+.status-form { display: flex; gap: 8px; margin-top: 12px; padding: 0; background: none; }
+
+.hero { text-align: center; background: #fff; padding: 40px 20px; border-radius: 8px; margin-bottom: 20px; }
+.hero h1 { margin: 0 0 8px; color: #1f4e79; font-size: 36px; }
+.btn { display: inline-block; padding: 10px 18px; background: #1f4e79; color: #fff;
+       border-radius: 4px; text-decoration: none; margin: 6px 4px 0; }
+.btn.secondary { background: #6b7c8c; }
+.steps { display: flex; gap: 12px; }
+.step { flex: 1; background: #fff; padding: 16px; border-radius: 8px; }
+.step strong { display: block; margin-bottom: 4px; }
+.center { text-align: center; padding: 40px 0; }
+.center h1 { font-size: 64px; margin: 0; color: #1f4e79; }
+
+@media (max-width: 600px) {
+  nav { flex-direction: column; gap: 8px; }
+  nav a, nav span { margin: 0 8px; }
+  .steps, .stats, .filters { flex-direction: column; }
+}
